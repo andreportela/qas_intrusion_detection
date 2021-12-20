@@ -4,6 +4,9 @@ version = "0.1.0"
 description = "Anomaly-Based Error / Intrusion Detection - MO851A_2021_S2 - QAS Experimental Evaluation Project"
 authors = ["André Portela <portela.eng@gmail.com>"]
 
+[tool.poetry.scripts]
+server = 'server:start'
+
 [tool.poetry.dependencies]
 python = "^3.8"
 fastapi = "0.70.0"

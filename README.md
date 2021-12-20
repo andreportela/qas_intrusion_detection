@@ -23,6 +23,13 @@ and will use others like pandas, scikit learn, etc.
 $ poetry install
 ```
 
+## Simulate the web server running
+
+```console
+$ poetry run server
+```
+The uvicorn web server will start accepting requests at port 8000. The bin will be to 0.0.0.0 so external request can hit the web server.
+The web server is just a simple FastAPI api which has only one http endpoint. It accepts post requests saving the received json to disk, this json simulates a medical record with a person's name, blood pressure and sugar level. It was purposefully written in a sync blocking way so the server is not that efficient.
 ## License
 
 This project is licensed under the terms of the MIT license.
