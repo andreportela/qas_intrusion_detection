@@ -8,8 +8,8 @@ authors = ["André Portela <portela.eng@gmail.com>"]
 server = 'qas_experimental_evaluation_project.server:start'
 client = 'qas_experimental_evaluation_project.client:start'
 ransomware = 'qas_experimental_evaluation_project.ransomware:start'
-malware-server = 'qas_experimental_evaluation_project.malware-server:start'
-malware-client = 'qas_experimental_evaluation_project.malware-client:start'
+malware_server = 'qas_experimental_evaluation_project.malware_server:start'
+malware_client = 'qas_experimental_evaluation_project.malware_client:start'
 
 [tool.poetry.dependencies]
 python = "^3.8"
