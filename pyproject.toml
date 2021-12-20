@@ -5,8 +5,8 @@ description = "Anomaly-Based Error / Intrusion Detection - MO851A_2021_S2 - QAS 
 authors = ["André Portela <portela.eng@gmail.com>"]
 
 [tool.poetry.scripts]
-server = 'server:start'
-client = 'client:start'
+server = 'qas_experimental_evaluation_project.server:start'
+client = 'qas_experimental_evaluation_project.client:start'
 
 [tool.poetry.dependencies]
 python = "^3.8"

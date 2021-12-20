@@ -21,4 +21,4 @@ def upload_medical_record(record: MedicalRecord) -> MedicalRecord:
     return record
 
 def start():
-    uvicorn.run("server:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("qas_experimental_evaluation_project.server:app", host="0.0.0.0", port=8000, reload=True)
