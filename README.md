@@ -30,7 +30,7 @@ $ poetry install
 ## Simulate the web server running
 
 ```console
-$ poetry run server
+$ server
 ```
 The uvicorn web server will start accepting requests at port 8000. The bin will be to 0.0.0.0 so external request can hit the web server.
 The web server is just a simple FastAPI api which has only one http endpoint. It accepts post requests saving the received json to disk, this json simulates a medical record with a person's name, blood pressure and sugar level. It was purposefully written in a sync blocking way so the server is not that efficient.
@@ -38,11 +38,11 @@ The web server is just a simple FastAPI api which has only one http endpoint. It
 ## Simulate the web client running
 
 ```console
-$ poetry run client
+$ client
 ```
 or 
 ```console
-$ poetry run client http://192.168.15.21:8000
+$ client http://192.168.15.21:8000
 ```
 A very simple web client will start sending random medical records to the web server (obviously need to be running). It receives the webserver **IP:PORT** as an argument or tries the loopback interface by default.
 
@@ -71,6 +71,16 @@ $ sudo apt-get install git net-tools collectl nmap
 $ nmap --script http-slowloris.nse --max-parallelism 400  192.168.15.20 -p 8000
 ```
 This bash command will trigger from the Client01 VM a fairly standard DoS attack on port 8000 to the IP 192.168.15.14. Just replace **IP** and **PORT** with the ones for Server01 VM.
+
+## Monitoring
+```console
+$ collectl --all -f data_collection/dataset -P --options 2
+```
+or
+```console
+$ monitoring
+```
+collectl tool is a <a href="http://collectl.sourceforge.net/Documentation.html" target="_blank">monitoring tool</a> used by Linux sys admins capable of normalizing data collection rate of several metrics related to cpu consumption, memory usage, network, and disk activities. The --all option will provide XXX metrics for each datapoint.
 
 ## Ransomware Attack
 ```console
