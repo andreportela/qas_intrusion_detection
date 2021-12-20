@@ -70,6 +70,10 @@ $ sudo apt-get install git net-tools collectl nmap
 ```console
 $ nmap --script http-slowloris.nse --max-parallelism 400  192.168.15.20 -p 8000
 ```
+or
+```console
+$ dos  192.168.15.20
+```
 This bash command will trigger from the Client01 VM a fairly standard DoS attack on port 8000 to the IP 192.168.15.14. Just replace **IP** and **PORT** with the ones for Server01 VM.
 
 ## Monitoring
