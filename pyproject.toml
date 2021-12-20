@@ -12,6 +12,7 @@ malware_server = 'qas_experimental_evaluation_project.malware_server:start'
 malware_client = 'qas_experimental_evaluation_project.malware_client:start'
 monitoring = 'qas_experimental_evaluation_project.monitoring:start'
 dos = 'qas_experimental_evaluation_project.dos:start'
+experiment_server = 'qas_experimental_evaluation_project.experiment_server:start'
 
 [tool.poetry.dependencies]
 python = "^3.8"

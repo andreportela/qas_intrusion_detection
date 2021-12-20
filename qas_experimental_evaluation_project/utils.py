@@ -1,4 +1,8 @@
-import os, time, datetime
+import os, time, datetime, subprocess, signal
+
+
+def log_info(task, pid):
+    print(f"{task} pid({pid}) at {datetime.datetime.now()}")
 
 def get_total_time_str(minutes=0, seconds=0):
     seconds_waited_str = f"{seconds} seconds"
@@ -18,3 +22,20 @@ def wait(minutes=0, seconds=0):
         print(f"{seconds_remaining} seconds remaining...")
         time.sleep(1)
     print(f"pid({os.getpid()}) resumed for {wait_time_str} at {datetime.datetime.now()}")
+
+def run(server_args):
+    return subprocess.Popen(server_args)
+
+def kill(process, name):
+    process_obj = process[name]["process"]
+    log_info(f"[killing {name} child]", process_obj.pid)
+    process_obj.send_signal(signal.SIGTERM)
+
+def run_and_log(server_cmd, process_name):
+    log_info(f"[starting {process_name} main]", os.getpid())
+    process = run(server_cmd)
+    log_info(f"[starting {process_name} child]", process.pid)
+    return process
+
+def execute_command(commands, name):
+    commands[name]['process'] = run_and_log(commands[name]['cmd'], name)
