@@ -21,10 +21,14 @@ def start():
     log_info("[starting monitoring main]", os.getpid())
     
     execute_command(commands, "client")
-    wait(seconds=5)
+    wait(minutes= 15, seconds=10)
     execute_command(commands, "malware_server")
-    wait(seconds=15)
+    wait(minutes= 15, seconds=10)
     kill(commands, "malware_server")
+    wait(minutes= 45, seconds=10) # 14 normal + 15 ransomware + 15 normal
+    execute_command(commands, "dos")
+    wait(seconds=15)
+    kill(commands, "dos")
     wait(seconds=5)
     kill(commands, "client")
 
