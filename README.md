@@ -62,6 +62,15 @@ $ sudo apt-get install git net-tools collectl nmap
 - nmap is a tool which will perform one kind of DoS attack;
 - collectl is a monitoring tool used in the experiment;
 
+## NMap
+
+<a href="https://nmap.org/"  target="_blank">NMap</a> is a flexible tool to network management, scan and security evaluations. It will be used to implement DoS attacks using the <a href= "https://nmap.org/nsedoc/scripts/http-slowloris.html" target="_blank">slowloris</a> strategy. NMap is used on the client VM to perform DoS attack to the server VM.
+
+### DoS Attack
+```console
+$ nmap --script http-slowloris.nse --max-parallelism 400  192.168.15.20 -p 8000
+```
+This bash command will trigger from the Client01 VM a fairly standard DoS attack on port 8000 to the IP 192.168.15.14. Just replace **IP** and **PORT** with the ones for Server01 VM.
 ## License
 
 This project is licensed under the terms of the MIT license.
