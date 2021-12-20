@@ -80,14 +80,18 @@ This command will trigger a ransomware attack simulator which deletes a random m
 
 ## Malware Attack
 ```console
-$ poetry run malware-server
+$ poetry run malware_server
 ```
 This command will trigger a malware attack simulator which receives data stoled from a victim. This script just receives data and do nothing to simulate a malware server. This script should be run in Client01 VM.
 
 ```console
-$ poetry run malware-client
+$ poetry run malware_client
 ```
-This command will trigger a malware attack simulator which reads a random medical_record in a loop and send it to a malware-server. This script reads files faster than client creates them by default, but it is not a problem because it doesn't deletem them. This script should be run in Server01 VM after the malware server is up and running.
+or 
+```console
+$ poetry run malware_client http://192.168.15.21:8000
+```
+This command will trigger a malware attack simulator which reads a random medical_record in a loop and send it to a malware_server. This script reads files faster than client creates them by default, but it is not a problem because it doesn't deletem them. This script should be run in Server01 VM after the malware server is up and running.
 ## License
 
 This project is licensed under the terms of the MIT license.
