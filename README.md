@@ -6,6 +6,10 @@ This project implements the QAS Experimental Evaluation Project of MO851A_2021_S
 
 This repository holds the experimental code and data: web server, clients, attackers, dataset, data preparation, classification, etc.
 
+All the experiments were conducted using 2 guests (Server01 and Client01) <a href="https://www.osboxes.org/ubuntu/#ubuntu-20-04-vbox" class="external-link" target="_blank">Ubuntu 20.04 virtual machines</a> using Virtual Box 6.1.30 on a Windows 10 Pro Host 21H1.
+
+Both VMs should run in Bridge mode with a different mac address on the network cards.
+
 ## Requirements
 
 Python 3.8+
@@ -45,6 +49,18 @@ A very simple web client will start sending random medical records to the web se
 This simple client uses <a href="https://github.com/joke2k/faker" class="external-link" target="_blank">Faker</a> to generate random people's names and <a href="https://docs.python.org/3.8/library/random.html" target="_blank">random lib</a> to create random info for blood pressure and sugar level. This randomization creates a variation on the data that will be sent to the server over the network. So each request will have a slightly different content and size.
 
 This client also uses <a href="https://docs.python.org/3.8/library/random.html#random.gauss" target="_blank">gauss()</a> to randomize the interval between requests. It uses by default a gaussian distribution with a 3 seconds median and a standard deviation of 0.4 seconds. Although this strategy won't be totally reallistic simulating real clients, it will distribute the requests overtime in a way that most times the client requests are sepparated by a few seconds, and sometimes the requests will fire on time way shorter than that.
+
+## Virtual Machine Setup
+
+### Installation
+```console
+$ sudo apt update
+$ sudo apt-get install git net-tools collectl nmap
+```
+- git is needed to clone this repository into the VM;
+- net-tools is needed to use simple networks tools like ifconfig to discover the VM's IP address;
+- nmap is a tool which will perform one kind of DoS attack;
+- collectl is a monitoring tool used in the experiment;
 
 ## License
 
