@@ -88,24 +88,49 @@ collectl tool is a <a href="http://collectl.sourceforge.net/Documentation.html" 
 
 ## Ransomware Attack
 ```console
-$ poetry run ransomware
+$ ransomware
 ```
 This command will trigger a ransomware attack simulator which deletes a random medical_record in a loop. This script deletes files faster than client creates them by default, but it slows down every time it got no file to adapt to the client pace in testing. This script should be run in Server01 VM.
 
 ## Malware Attack
 ```console
-$ poetry run malware_server
+$ malware_server
 ```
 This command will trigger a malware attack simulator which receives data stoled from a victim. This script just receives data and do nothing to simulate a malware server. This script should be run in Client01 VM.
 
 ```console
-$ poetry run malware_client
+$ malware_client
 ```
 or 
 ```console
-$ poetry run malware_client http://192.168.15.21:8000
+$ malware_client http://192.168.15.21:8000
 ```
 This command will trigger a malware attack simulator which reads a random medical_record in a loop and send it to a malware_server. This script reads files faster than client creates them by default, but it is not a problem because it doesn't deletem them. This script should be run in Server01 VM after the malware server is up and running.
+
+## Simulation
+```console
+$ experiment_server
+```
+```console
+$ experiment_client
+```
+This command will start the routines to simulate usage and attacks. This script should be run in Server01 VM. It will start the web app server, wait a few seconds and start the monitoring tool and then coordinate with the experiment_client to shuffle periods of normal system usage and attacks like malware and ransomware. As the DoS is fully performed from experiment_client, it needs to be carefully synchronized. Synchronization can tolerate a skew of few seconds between starting both scripts because you can clean the dataset later removing a few intersection datapoints between attack shifting. Easiest way to synchronize is to have 2 terminals open and connected to both VMs and then quickly run both scripts concurrently (one in each VM).
+
+## Data
+Data will be saved at once gzipped after monitoring tool receives sigterm (Linux closing signal). This way it doesn't spike metrics in disk for example. Just gunzip the file. It is a tab file, very similar to a csv, main difference it uses spaces instead of comas. Check the log from the scripts to remove manually a batch of 10 datapoints around the moment the behavior switches from normal to attack and vice-versa. Although the dataset can have a few thousand data points, its only needed to remove around 50 data points total, which makes it feasible to do it manually.
+It easy to spot large chunks of the dataset with a single label, so labelling was also done manually. It took only around 15 minutes with a regex capable editor.
+
+
+# Machine Learning
+ML analysis was fairly straightforward given that the dataset was already clean and didn't need further manipulation.
+Algorithms used:
+- RandomForest
+- DecisionTree
+- NaiveBayes
+- LDA
+- Logistic Regression
+- kNN
+- AdaBoost
 ## License
 
 This project is licensed under the terms of the MIT license.
