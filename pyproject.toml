@@ -14,6 +14,7 @@ monitoring = 'qas_experimental_evaluation_project.monitoring:start'
 dos = 'qas_experimental_evaluation_project.dos:start'
 experiment_server = 'qas_experimental_evaluation_project.experiment_server:start'
 experiment_client = 'qas_experimental_evaluation_project.experiment_client:start'
+classifiers = "ml_training.classifiers:start"
 
 [tool.poetry.dependencies]
 python = ">=3.8,<3.11"
